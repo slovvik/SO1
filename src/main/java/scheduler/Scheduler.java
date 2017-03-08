@@ -3,10 +3,9 @@ package scheduler;
 import algorithms.Algorithm;
 import process.Process;
 
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
-public class Scheduler implements Runnable{
+public class Scheduler implements Runnable {
 
     private static int NUMBER_OF_PROCESSES = 20;
     private static int NUMBER_OF_TEST_DATA = 1;
@@ -18,10 +17,10 @@ public class Scheduler implements Runnable{
     private Algorithm[] algorithms;
     private double probability;
 
-    public Scheduler(double probability, Algorithm ... algorithms) {
+    public Scheduler(double probability, Algorithm... algorithms) {
         this.probability = probability;
         this.algorithms = algorithms;
-        new Thread(this,"Scheduler").start();
+        new Thread(this, "Scheduler").start();
     }
 
     @Override
@@ -37,8 +36,7 @@ public class Scheduler implements Runnable{
                 process.setWaitTimeBeforeAdded(0);
                 addProcess(process);
                 System.out.println("Added process: " + process.getProcessID());
-            }
-            else {
+            } else {
                 int waitTime = getRandomWaitTime(WAIT_FROM, WAIT_TO);
                 process.setAddedWithOutWait(false);
                 process.setWaitTimeBeforeAdded(waitTime);
@@ -66,6 +64,7 @@ public class Scheduler implements Runnable{
         return ThreadLocalRandom.current().nextInt(from, to + 1);
 //        return r
     }
+
     private int getRandomWaitTime(int from, int to) {
         return ThreadLocalRandom.current().nextInt(from, to + 1);
     }

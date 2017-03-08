@@ -21,8 +21,7 @@ public class FCFS extends Algorithm implements Runnable {
                 process.setFinishTime(processFinished);
                 System.out.println("Processes in queue: " + (processQueue.size() + 1));
                 System.out.println(process);
-            }
-            else if (processQueue.size() == 0 && isDone) {
+            } else if (processQueue.size() == 0 && isDone) {
                 break;
             }
 
