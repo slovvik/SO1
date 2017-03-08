@@ -2,20 +2,38 @@ package algorithms;
 
 import process.Process;
 
-import java.util.LinkedList;
 import java.util.Queue;
+import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Algorithm {
 
-    protected Queue<Process> processQueue;
-    protected boolean isDone;
+    Queue<Process> processQueue;
+    boolean isDone;
+    boolean threadIsDone;
 
-    public Algorithm(boolean isDone) {
-        this.processQueue = new LinkedList<>();
-        this.isDone = isDone;
+    Algorithm() {
+        this.processQueue = new ConcurrentLinkedQueue<>();
+        this.isDone = false;
+        this.threadIsDone = false;
+    }
+
+    public void waitForProcessToFinish(Process process) {
+        try {
+            Thread.sleep(process.getPhaseProcessor());
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addProcess(Process process) {
         processQueue.add(process);
+    }
+
+    public boolean isDone() {
+        return isDone;
+    }
+
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }
