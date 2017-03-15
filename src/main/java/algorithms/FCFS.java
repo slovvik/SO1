@@ -1,11 +1,12 @@
 package algorithms;
 
 import process.Process;
+import statistics.Statistics;
 
 public class FCFS extends Algorithm implements Runnable {
 
-    public FCFS() {
-        super();
+    public FCFS(Statistics statistics) {
+        super(statistics);
         new Thread(this, getClass().getName()).start();
     }
 
@@ -24,8 +25,7 @@ public class FCFS extends Algorithm implements Runnable {
             } else if (processQueue.size() == 0 && isDone) {
                 break;
             }
-
         }
-        System.out.println("Average time: " + processFinished / 20);
+        statistics.getStatisticsList().add("FCFS average time: " + processFinished / 20);
     }
 }

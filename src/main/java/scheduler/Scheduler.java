@@ -35,14 +35,14 @@ public class Scheduler implements Runnable {
                 process.setAddedWithOutWait(true);
                 process.setWaitTimeBeforeAdded(0);
                 addProcess(process);
-                System.out.println("Added process: " + process.getProcessID());
+                System.out.println("Added process: " + process.getProcessID() + " Added time: " + process.getAddedTime());
             } else {
                 int waitTime = getRandomWaitTime(WAIT_FROM, WAIT_TO);
                 process.setAddedWithOutWait(false);
                 process.setWaitTimeBeforeAdded(waitTime);
                 process.setAddedTime(process.getAddedTime() + waitTime);
                 addAfterWaitTime(process, waitTime);
-                System.out.println("Added process: " + process.getProcessID());
+                System.out.println("Added process: " + process.getProcessID() + " Added time: " + process.getAddedTime());
                 timer += waitTime;
             }
         }
